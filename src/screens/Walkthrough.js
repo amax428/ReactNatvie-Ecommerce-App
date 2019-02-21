@@ -1,27 +1,29 @@
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import WalkthroughItem from '../components/WalkthroughItem';
 
-// create a component
+//const url = '../assets/image/walksthrough1.png';
 class Walkthrough extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Walkthrough</Text>
+        <WalkthroughItem
+          title='Lorem ipsum is placeholder'
+          description='Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut l'
+        />
       </View>
     );
   }
 }
 
-// define your styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2c3e50',
   },
 });
 
-//make this component available to the app
 export default Walkthrough;

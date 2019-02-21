@@ -53,10 +53,61 @@ export const Colors = {
 }
 
 export const Fonts = {
-  Large: 40,
-  Medium: 30,
-  Normal: 20,
-  Small: 15,
+  Heading1: {
+    fontFamily: 'SF-Pro-Display-Semibold',
+    fontSize: 34,
+    lineHeight: 41,
+  },
+  Heading2: {
+    fontFamily: 'SF-Pro-Display-Semibold',
+    fontSize: 22,
+    lineHeight: 28,
+  },
+  Heading3: {
+    fontFamily: 'SF-Pro-Text-Semibold',
+    fontSize: 17,
+    lineHeight: 22,
+  },
+  Heading4: {
+    fontFamily: 'SF-Pro-Text-Medium',
+    fontSize: 15,
+    lineHeight: 20,
+  },
+  Button1: {
+    fontFamily: 'SF-Pro-Text-Semibold',
+    fontSize: 17,
+    lineHeight: 22,
+  },
+  Button2: {
+    fontFamily: 'SF-Pro-Text-Medium',
+    fontSize: 12,
+    lineHeight: 16,
+  },
+  Caption1: {
+    fontFamily: 'SF-Pro-Text-Medium',
+    fontSize: 12,
+    lineHeight: 16,
+  },
+  Caption2: {
+    fontFamily: 'SF-Pro-Text-Medium',
+    fontSize: 11,
+    lineHeight: 13,
+  },
+  Body1: {
+    fontFamily: 'SF-Pro-Text-Regular',
+    fontSize: 15,
+    lineHeight: 20,
+  },
+  Body2: {
+    fontFamily: 'SF-Pro-Text-Regular',
+    fontSize: 13,
+    lineHeight: 18,
+  },
+  SmallText: {
+    fontFamily: 'SF-Pro-Text-Regular',
+    fontSize: 11,
+    lineHeight: 13,
+  },
 }
 
 export const Spacing = {

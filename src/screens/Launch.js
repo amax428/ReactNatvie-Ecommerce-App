@@ -32,7 +32,7 @@ class Launch extends Component {
           colors={[Colors.GradientDeep.dark, Colors.GradientDeep.light]}
           style={styles.linearGradient}
         >
-          <Image source={require('../assets/Logo.png')}></Image>
+          <Image source={require('../assets/image/Logo.png')}></Image>
         </LinearGradient>
       </View>
     );
