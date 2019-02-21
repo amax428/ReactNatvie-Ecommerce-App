@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     color: Colors.Accent.main,
     marginVertical: Spacing.Smaller,
-    marginLeft: 'auto',
-    marginRight: 'auto',
     paddingVertical: Spacing.Small,
   },
   boldTheme: {

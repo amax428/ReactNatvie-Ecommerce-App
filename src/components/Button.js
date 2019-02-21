@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   buttonContatiner: {
     ...Fonts.Button2,
     textAlign: 'center',
-    marginHorizontal: Spacing.Big,
     paddingVertical: Spacing.Small,
     borderColor: Colors.Accent.main,
     borderWidth: 1,

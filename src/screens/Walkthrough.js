@@ -4,7 +4,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import WalkthroughItem from '../components/WalkthroughItem';
 import Button from '../components/Button';
 import TouchableText from '../components/TouchableText';
-import { Colors } from '../styles/variables';
+import { Colors, Spacing } from '../styles/variables';
 
 const data = [
   {
@@ -79,6 +79,7 @@ class Walkthrough extends Component {
             sliderWidth={viewportWidth}
             itemWidth={viewportWidth}
             onSnapToItem={(index) => this.setState({ activeSlide: index })}
+            scrollEnabled={false}
           />
           <Pagination
             dotsLength={items.length}
@@ -90,8 +91,12 @@ class Walkthrough extends Component {
             inactiveDotScale={1}
           />
         </View>
-        <Button onPress={this.handleNext}>Next</Button>
-        <TouchableText onPress={this.handleSkip} type="bold">Skip</TouchableText>
+        <View style={styles.buttonContainer}>
+          <Button onPress={this.handleNext}>Next</Button>
+          <View style={styles.hCenter}>
+            <TouchableText onPress={this.handleSkip} type="bold">Skip</TouchableText>
+          </View>
+        </View>
       </View>
     );
   }
@@ -126,6 +131,13 @@ const styles = StyleSheet.create({
   carouselInactivePageDot: {
     backgroundColor: Colors.Grey.lighter,
   },
+  buttonContainer: {
+    marginHorizontal: Spacing.Big,
+  },
+  hCenter: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
 });
 
 export default Walkthrough;
