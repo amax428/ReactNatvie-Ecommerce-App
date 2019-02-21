@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Colors } from '../styles/variables';
 
 class Launch extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      timePassed: false,
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {this.setState({timePassed: true})}, 2000);
+  }
+
   render() {
+    const { timePassed } = this.state;
+    const { navigate} = this.props.navigation;
+
+    if (timePassed) {
+      navigate('Walkthrough');
+    }
+
     return (
       <View style={styles.container}>
         <LinearGradient
@@ -13,7 +32,7 @@ class Launch extends Component {
           colors={[Colors.GradientDeep.dark, Colors.GradientDeep.light]}
           style={styles.linearGradient}
         >
-          <Text>Launchsss</Text>
+          <Image source={require('../assets/Logo.png')}></Image>
         </LinearGradient>
       </View>
     );
@@ -26,8 +45,8 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
