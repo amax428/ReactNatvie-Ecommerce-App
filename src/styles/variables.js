@@ -2,45 +2,46 @@ export const Colors = {
   Primary: {
     main: '#BE52F2',
     light: '#DBA5F5',
-    dark: '#EEDFF2',
+    lighter: '#EEDFF2',
   },
   Accent: {
     main: '#6979F8',
     light: '#A5AFFB',
-    dark: '#E5E7FA',
+    lighter: '#E5E7FA',
   },
   Yellow: {
     main: '#FFCF5C',
     light: '#FFE29D',
-    dark: '#FFF8E7',
+    lighter: '#FFF8E7',
   },
   Orange: {
     main: '#FFA26B',
     light: '#FFC7A6',
-    dark: '#FFE8DA',
+    lighter: '#FFE8DA',
   },
   Blue: {
     main: '#0084F4',
     light: '#66B5F8',
-    dark: '#D5E9FA',
+    lighter: '#D5E9FA',
   },
   Green: {
     main: '#00C48C',
     light: '#7DDFC3',
-    dark: '#D5F2EA',
+    lighter: '#D5F2EA',
   },
   Pink: {
     main: '#FF647C',
     light: '#FDAFBB',
-    dark: '#FBE4E8',
+    lighter: '#FBE4E8',
   },
-  Black: '#1A051D',
-  Dark: '#3F3356',
+  Dark: '#1A051D',
   Grey: {
-    main: '#ECE9F1',
-    light: '#F7F5F9',
-    dark: '#D0C9D6',
+    main: '#3F3356',
+    light: '#D0C9D6',
+    lighter: '#ECE9F1',
+    lightest: '#F7F5F9',
   },
+  Black: '#000000',
   White: '#FFFFFF',
   GradientDeep: {
     dark: '#BD7AE3',
@@ -114,5 +115,10 @@ export const Spacing = {
   Big: 30,
   Normal: 20,
   Small: 10,
+  Smaller: 8,
   Tiny: 5,
+}
+
+export const BorderRadius = {
+  Normal: 7,
 }
