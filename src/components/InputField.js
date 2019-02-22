@@ -28,6 +28,7 @@ class InputField extends Component {
           underlineColorAndroid='transparent'
           secureTextEntry={secureTextEntry}
           ref={ref => this.input = ref}
+          autoCapitalize = 'none'
         />
       </View>
     );

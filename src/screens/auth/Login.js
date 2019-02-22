@@ -35,11 +35,15 @@ class Login extends Component {
     this.setState({ isLogin: true });
     Firebase.userLogin(email, password)
       .then(user => {
-        if(user) this.props.success(user);
+        if(user) //this.props.success(user); 
+        {
+          console.log(JSON.stringify(user));
+        }
         this.setState({ isLogin: false });
         console.log('*****************************')
         this.props.navigation.navigate('Welcome');
-      });
+      })
+      .catch(console.log("____________FAILED__________________"))
   };
 
   render() {
