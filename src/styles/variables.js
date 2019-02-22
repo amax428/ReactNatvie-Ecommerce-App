@@ -114,6 +114,7 @@ export const Fonts = {
 export const Spacing = {
   Big: 30,
   Normal: 20,
+  Medium: 15,
   Small: 10,
   Smaller: 8,
   Tiny: 5,

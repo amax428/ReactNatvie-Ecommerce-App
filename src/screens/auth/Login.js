@@ -11,29 +11,36 @@ class Login extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={styles.container}>
-        <BackHeader navigation={navigation} />
-        <View style={styles.space} />
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Welcome back</Text>
-          <Text style={styles.description}>Please log in to your account</Text>
+      <ScrollView contentContainerStyle={{flex:1}}>
+        <View  style={styles.container}>
+          <BackHeader navigation={navigation} />
+          <View style={styles.space} />
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Welcome back</Text>
+            <Text style={styles.description}>Please log in to your account</Text>
+          </View>
+          <View style={styles.space} />
+          <InputField
+            placeholder="Email or phone number"
+            keyboardType="email-address"
+          />
+          <InputField
+            placeholder="Password"
+            returnKeyType="done"
+            secureTextEntry={true}
+          />
+          <View style={styles.paddingL}>
+            <TouchableText>Forgot password?</TouchableText>
+          </View>
+          <Button>Log in</Button>
+          <View style={[styles.paddingL, styles.signup]}>
+            <Text style={styles.question}>I don't have account?</Text>
+            <TouchableText>Sign up now</TouchableText>
+          </View>
+          <View style={styles.space} />
+          <SocialButtonContainer />
         </View>
-        <View style={styles.space} />
-        <InputField
-          placeholder="Email or phone number"
-          keyboardType="email-address"
-        />
-        <View style={styles.paddingL}>
-          <TouchableText>Forgot password?</TouchableText>
-        </View>
-        <Button>Log in</Button>
-        <View style={[styles.paddingL, styles.signup]}>
-          <Text style={styles.question}>I don't have account?</Text>
-          <TouchableText>Sign up now</TouchableText>
-        </View>
-        <View style={styles.space} />
-        <SocialButtonContainer />
-      </View>
+      </ScrollView>
     );
   }
 }

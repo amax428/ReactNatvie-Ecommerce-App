@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Colors, BorderRadius } from '../styles/variables';
+import { Colors, BorderRadius, Spacing, Fonts } from '../styles/variables';
 
 class InputField extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class InputField extends Component {
   }
 
   render() {
-    const { error, placeholder, keyboardType } = this.props;
+    const { error, placeholder, keyboardType, secureTextEntry } = this.props;
     const { text } = this.state;
     return (
       <View style={[styles.container, error ? styles.containerError : {}]}>
@@ -23,6 +23,8 @@ class InputField extends Component {
           placeholderTextColor={Colors.Grey.lighter}
           keyboardType={keyboardType}
           onChangeText={text => this.setState({ text })}
+          underlineColorAndroid='transparent'
+          secureTextEntry={secureTextEntry}
         />
       </View>
     );
@@ -32,17 +34,20 @@ class InputField extends Component {
 const styles = StyleSheet.create({
   container: {
     borderRadius: BorderRadius.Normal,
-    shadowOffset:{  width: 30,  height: 30,  },
-    shadowColor: Colors.Dark,
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
+    shadowOffset:{  width: -10,  height: -10,  },
+    shadowColor: '#000000',
+    shadowOpacity: 0.5,
+    shadowRadius: 1,
     elevation: 1,
+    paddingHorizontal: Spacing.Medium,
+    marginVertical: Spacing.Smaller,
   },
   containerError: {
 
   },
   inputText: {
-
+    ...Fonts.Body1,
+    color: Colors.Dark,
   },
 });
 
