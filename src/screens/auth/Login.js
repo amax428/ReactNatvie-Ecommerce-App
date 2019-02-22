@@ -6,8 +6,42 @@ import SocialButtonContainer from '../../components/SocialButtonContainer';
 import TouchableText from '../../components/TouchableText';
 import InputField from '../../components/InputField';
 import { Spacing, Fonts, Colors } from '../../styles/variables';
+import Firebase from '../../services/api';
 
 class Login extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  handleLogin() {
+    const email = this.email.getInputValue();
+    const password = this.password.getInputValue();
+
+    this.setState({
+      isEmailCorrect: email === '',
+      isPasswordCorrect: password === '',
+    }, () => {
+      if(email !== '' && password !== ''){
+        this.loginToFireBase(email, password);
+      } else {
+        console.warn('Fill up all fields')
+      }
+    });
+  }
+
+  loginToFireBase = (email, password) => {
+    this.setState({ isLogin: true });
+    Firebase.userLogin(email, password)
+      .then(user => {
+        if(user) this.props.success(user);
+        this.setState({ isLogin: false });
+        console.log('*****************************')
+        this.props.navigation.navigate('Welcome');
+      });
+  };
+
   render() {
     const { navigation } = this.props;
     return (
@@ -23,16 +57,18 @@ class Login extends Component {
           <InputField
             placeholder="Email or phone number"
             keyboardType="email-address"
+            ref={ref => this.email = ref}
           />
           <InputField
             placeholder="Password"
             returnKeyType="done"
             secureTextEntry={true}
+            ref={ref => this.password = ref}
           />
           <View style={styles.paddingL}>
             <TouchableText>Forgot password?</TouchableText>
           </View>
-          <Button>Log in</Button>
+          <Button onPress={this.handleLogin}>Log in</Button>
           <View style={[styles.paddingL, styles.signup]}>
             <Text style={styles.question}>I don't have account?</Text>
             <TouchableText>Sign up now</TouchableText>

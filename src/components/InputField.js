@@ -11,6 +11,8 @@ class InputField extends Component {
     };
   }
 
+  getInputValue = () => this.state.text;
+
   render() {
     const { error, placeholder, keyboardType, secureTextEntry } = this.props;
     const { text } = this.state;
@@ -25,6 +27,7 @@ class InputField extends Component {
           onChangeText={text => this.setState({ text })}
           underlineColorAndroid='transparent'
           secureTextEntry={secureTextEntry}
+          ref={ref => this.input = ref}
         />
       </View>
     );
