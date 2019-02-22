@@ -29,7 +29,7 @@ export const Colors = {
     light: '#7DDFC3',
     lighter: '#D5F2EA',
   },
-  Pink: {
+  Red: {
     main: '#FF647C',
     light: '#FDAFBB',
     lighter: '#FBE4E8',

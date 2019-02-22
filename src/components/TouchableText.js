@@ -14,6 +14,7 @@ class TouchableText extends Component {
     return (
       <TouchableOpacity
         onPress={disabled ? undefined : onPress}
+        style={styles.container}
       >
         <Text style={[styles.textContatiner, type === 'bold' ? styles.boldTheme : styles.normalTheme]}>
           {type === 'bold' ? children.toUpperCase() : children}
@@ -24,8 +25,10 @@ class TouchableText extends Component {
 }
 
 const styles = StyleSheet.create({
-  textContatiner: {
+  container: {
     alignSelf: 'flex-start',
+  },
+  textContatiner: {
     color: Colors.Accent.main,
     marginVertical: Spacing.Smaller,
     paddingVertical: Spacing.Small,

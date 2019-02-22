@@ -32,7 +32,7 @@ class Launch extends Component {
           colors={[Colors.GradientDeep.dark, Colors.GradientDeep.light]}
           style={styles.linearGradient}
         >
-          <Image source={require('../assets/image/Logo.png')}></Image>
+          <Image source={require('../assets/image/Logo.png')} resizeMode="contain" style={styles.image}></Image>
         </LinearGradient>
       </View>
     );
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  image: {
+    width: 168.5,
+  }
 });
 
 export default Launch;

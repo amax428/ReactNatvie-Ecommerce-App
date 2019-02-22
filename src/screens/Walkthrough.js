@@ -53,7 +53,8 @@ class Walkthrough extends Component {
   }
 
   handleSkip() {
-    console.log('----------------skipped');
+    const { navigate } = this.props.navigation;
+    navigate('LoginStack');
   }
 
   _renderItem ({item, index}) {
