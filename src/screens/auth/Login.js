@@ -52,7 +52,7 @@ class Login extends Component {
         }
         this.setState({ isLogin: false });
         console.log('*****************************')
-      }).catch(error =>{
+      }).catch(error => {
         switch (error.code) {
           case 'auth/invalid-email':
             this.setState({ emailError: 'Please type a correct email address'});
@@ -72,15 +72,13 @@ class Login extends Component {
     const { emailError, passwordError } = this.state;
 
     return (
-      <ScrollView contentContainerStyle={{flex:1}}>
-        <View  style={styles.container}>
+      <ScrollView style={styles.scrollviewContainer}>
+        <View style={styles.container}>
           <BackHeader navigation={navigation} />
-          <View style={styles.space} />
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Welcome back</Text>
             <Text style={styles.description}>Please log in to your account</Text>
           </View>
-          <View style={styles.space} />
           <InputField
             placeholder="Email or phone number"
             keyboardType="email-address"
@@ -111,16 +109,16 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollviewContainer: {
     flex: 1,
-    margin: Spacing.Big,
   },
-  space: {
-    flex: 1,
+  container: {
+    margin: Spacing.Big,
   },
   title: {
     ...Fonts.Heading2,
     color: Colors.Dark,
+    marginVertical: Spacing.Small,
   },
   description: {
     ...Fonts.Body1,
@@ -128,6 +126,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginVertical: Spacing.Big,
+    paddingVertical: Spacing.Big,
   },
   question: {
     fontFamily: 'SF-Pro-Text-Regular',

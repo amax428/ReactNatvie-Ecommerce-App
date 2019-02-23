@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 35,
     padding: Spacing.Tiny,
-    top: Spacing.Tiny,
+    top: 13,
   },
   btnImage: {
     resizeMode: 'contain',

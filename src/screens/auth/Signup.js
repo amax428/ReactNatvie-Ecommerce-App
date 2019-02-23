@@ -13,10 +13,10 @@ class Signup extends Component {
     super(props);
 
     this.state = {
-      isNameCorrect: false,
-      isEmailCorrect: false,
-      isPasswordCorrect: false,
-      isRepeatCorrect: false,
+      nameError: '',
+      emailError: '',
+      passwordError: '',
+      repeatError: '',
       isCreatingAccount: false,
     };
 
@@ -29,18 +29,33 @@ class Signup extends Component {
     const password = this.password.getInputValue();
     const repeat = this.repeat.getInputValue();
 
-    this.setState({
-      isNameCorrect: name === '',
-      isEmailCorrect: email === '',
-      isPasswordCorrect: password === '',
-      isRepeatCorrect: repeat === '' || repeat !== password,
-    }, () => {
-      if(name !== '' && email !== '' && password !== '' && (repeat !== '' && repeat === password)){
-        this.createFireBaseAccount(name, email, password);
-      } else {
-        console.warn('Fill up all fields correctly');
-      }
-    });
+    if (name === '') {
+      this.setState({ nameError: 'Please type user name'});
+    } else {
+      this.setState({ nameError: ''});
+    }
+
+    if (password === '') {
+      this.setState({ passwordError: 'Please type password'});
+    } else {
+      this.setState({ passwordError: ''});
+    }
+
+    if (email === '') {
+      this.setState({ emailError: 'Please type email'});
+    } else {
+      this.setState({ emailError: ''});
+    }
+
+    if (repeat === '' || repeat !== password) {
+      this.setState({ repeatError: 'Password dismatch'});
+    } else {
+      this.setState({ repeatError: ''});
+    }
+
+    if(name !== '' && email !== '' && password !== '' && (repeat !== '' && repeat === password)){
+      this.createFireBaseAccount(name, email, password);
+    }
   }
 
   createFireBaseAccount = (name, email, password) => {
@@ -49,45 +64,58 @@ class Signup extends Component {
       .then(result => {
         if(result) this.props.navigation.navigate('HomeStack');
         this.setState({ isCreatingAccount: false });
+      }).catch(error => {
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+            this.setState({ emailError: 'This email address is already taken'});
+            break;
+          case 'auth/invalid-email':
+            this.setState({ emailError: 'Please type a correct email address'});
+            break;
+          case 'auth/weak-password':
+            this.setState({ passwordError: 'Password is too weak'});
+            break;
+          default:
+            console.warn('Check your internet connection');
+        }
       });
   };
 
   render() {
     const { navigation } = this.props;
-    const { isNameCorrect, isEmailCorrect, isPasswordCorrect, isRepeatCorrect } = this.state;
+    const { nameError, emailError, passwordError, repeatError } = this.state;
 
     return (
-      <ScrollView contentContainerStyle={{flex:1}}>
+      <ScrollView style={styles.scrollviewContainer}>
         <View  style={styles.container}>
           <BackHeader navigation={navigation} />
-          <View style={styles.space} />
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Signup</Text>
           </View>
-          <View style={styles.space} />
           <InputField
             placeholder="User name"
             keyboardType="email-address"
-            error={isNameCorrect}
+            error={nameError}
             ref={ref => this.name = ref}
           />
           <InputField
             placeholder="Email or phone number"
             keyboardType="email-address"
-            error={isEmailCorrect}
+            error={emailError}
             ref={ref => this.email = ref}
           />
           <InputField
             placeholder="Password"
             returnKeyType="done"
             secureTextEntry={true}
-            error={isPasswordCorrect}
+            error={passwordError}
             ref={ref => this.password = ref}
           />
           <InputField
             placeholder="Confirm password"
             returnKeyType="done"
             secureTextEntry={true}
+            error={repeatError}
             ref={ref => this.repeat = ref}
           />
           <Button onPress={this.handleSignup}>Sign up</Button>
@@ -104,16 +132,16 @@ class Signup extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollviewContainer: {
     flex: 1,
-    margin: Spacing.Big,
   },
-  space: {
-    flex: 1,
+  container: {
+    margin: Spacing.Big,
   },
   title: {
     ...Fonts.Heading2,
     color: Colors.Dark,
+    marginVertical: Spacing.Small,
   },
   description: {
     ...Fonts.Body1,
