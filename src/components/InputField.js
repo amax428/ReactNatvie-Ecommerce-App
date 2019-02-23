@@ -9,9 +9,22 @@ class InputField extends Component {
     this.state = {
       text: '',
       hidePassword: true,
+      error: '',
     };
 
     this.managePasswordVisibility = this.managePasswordVisibility.bind(this);
+  }
+
+  componentWillMount() {
+    const { error } = this.props;
+    this.setState({ error });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { error } = nextProps;
+    if ( error !== this.state.error ) {
+      this.setState({ error });
+    }
   }
 
   getInputValue = () => this.state.text;
@@ -21,17 +34,17 @@ class InputField extends Component {
   }
 
   render() {
-    const { error, placeholder, keyboardType, secureTextEntry } = this.props;
-    const { text, hidePassword  } = this.state;
+    const { placeholder, keyboardType, secureTextEntry } = this.props;
+    const { text, hidePassword, error  } = this.state;
     return (
-      <View style={[styles.container, error ? styles.containerError : {}]}>
+      <View style={styles.container}>
         <TextInput
-          style={styles.inputText}
+          style={[styles.inputText, error ? styles.containerError : {}]}
           value={text}
           placeholder={placeholder}
           placeholderTextColor={Colors.Grey.lighter}
           keyboardType={keyboardType}
-          onChangeText={text => this.setState({ text })}
+          onChangeText={text => this.setState({ text, error: '' })}
           underlineColorAndroid='transparent'
           secureTextEntry={secureTextEntry && hidePassword}
           ref={ref => this.input = ref}
@@ -44,6 +57,9 @@ class InputField extends Component {
               require('../assets/image/eye.png') } style = { styles.btnImage } />
           </TouchableOpacity>
         }
+        {error !== '' &&
+          <Text style={styles.errorText}>{error}</Text>
+        }
       </View>
     );
   }
@@ -51,6 +67,13 @@ class InputField extends Component {
 
 const styles = StyleSheet.create({
   container: {
+
+  },
+  containerError: {
+    borderColor: Colors.Red.main,
+    borderWidth: 1,
+  },
+  inputText: {
     borderRadius: BorderRadius.Normal,
     shadowOffset:{  width: -10,  height: -10,  },
     shadowColor: '#000000',
@@ -60,11 +83,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.Medium,
     marginVertical: Spacing.Smaller,
     position: 'relative',
-  },
-  containerError: {
-
-  },
-  inputText: {
+    borderWidth: 0,
     ...Fonts.Body1,
     color: Colors.Dark,
   },
@@ -80,7 +99,13 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     height: '100%',
     width: '100%'
-  }
+  },
+  errorText: {
+    ...Fonts.Body2,
+    color: Colors.Red.main,
+    marginLeft: Spacing.Medium,
+    marginBottom: Spacing.Small,
+  },
 });
 
 export default InputField;

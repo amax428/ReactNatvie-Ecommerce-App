@@ -13,8 +13,8 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      isEmailCorrect: false,
-      isPasswordCorrect: false,
+      emailError: '',
+      passwordError: '',
       isLogin: false,
     };
 
@@ -25,35 +25,52 @@ class Login extends Component {
     const email = this.email.getInputValue();
     const password = this.password.getInputValue();
 
-    this.setState({
-      isEmailCorrect: email === '',
-      isPasswordCorrect: password === '',
-    }, () => {
-      if(email !== '' && password !== ''){
-        this.loginToFireBase(email, password);
-      } else {
-        console.warn('Fill up all fields')
-      }
-    });
+    if (email === '') {
+      this.setState({ emailError: 'Please type email'});
+    } else {
+      this.setState({ emailError: ''});
+    }
+
+    if (password === '') {
+      this.setState({ passwordError: 'Please type password'});
+    } else {
+      this.setState({ passwordError: ''});
+    }
+
+    if(email !== '' && password !== '') {
+      this.loginToFireBase(email, password);
+    }
   }
 
   loginToFireBase = (email, password) => {
     this.setState({ isLogin: true });
     Firebase.userLogin(email, password)
       .then(user => {
-        if(user) //this.props.success(user); 
-        {
+        if(user) {
           console.log(JSON.stringify(user));
           this.props.navigation.navigate('HomeStack');
         }
         this.setState({ isLogin: false });
         console.log('*****************************')
-      })
-      .catch(console.log("____________FAILED__________________"))
+      }).catch(error =>{
+        switch (error.code) {
+          case 'auth/invalid-email':
+            this.setState({ emailError: 'Please type a correct email address'});
+            break;
+          case 'auth/user-not-found':
+          case 'auth/wrong-password':
+            console.warn('Invalid email address or password');
+            break;
+          default:
+            console.warn('Check your internet connection');
+        }
+      });
   };
 
   render() {
     const { navigation } = this.props;
+    const { emailError, passwordError } = this.state;
+
     return (
       <ScrollView contentContainerStyle={{flex:1}}>
         <View  style={styles.container}>
@@ -67,12 +84,14 @@ class Login extends Component {
           <InputField
             placeholder="Email or phone number"
             keyboardType="email-address"
+            error={emailError}
             ref={ref => this.email = ref}
           />
           <InputField
             placeholder="Password"
             returnKeyType="done"
             secureTextEntry={true}
+            error={passwordError}
             ref={ref => this.password = ref}
           />
           <View style={styles.paddingL}>

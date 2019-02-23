@@ -54,6 +54,8 @@ class Signup extends Component {
 
   render() {
     const { navigation } = this.props;
+    const { isNameCorrect, isEmailCorrect, isPasswordCorrect, isRepeatCorrect } = this.state;
+
     return (
       <ScrollView contentContainerStyle={{flex:1}}>
         <View  style={styles.container}>
@@ -66,17 +68,20 @@ class Signup extends Component {
           <InputField
             placeholder="User name"
             keyboardType="email-address"
+            error={isNameCorrect}
             ref={ref => this.name = ref}
           />
           <InputField
             placeholder="Email or phone number"
             keyboardType="email-address"
+            error={isEmailCorrect}
             ref={ref => this.email = ref}
           />
           <InputField
             placeholder="Password"
             returnKeyType="done"
             secureTextEntry={true}
+            error={isPasswordCorrect}
             ref={ref => this.password = ref}
           />
           <InputField
