@@ -55,57 +55,58 @@ export const Colors = {
 
 export const Fonts = {
   Heading1: {
-    fontFamily: 'SF-Pro-Display-Semibold',
+    fontFamily: 'SF Pro Display',
     fontSize: 34,
     lineHeight: 41,
   },
   Heading2: {
-    fontFamily: 'SF-Pro-Display-Semibold',
+    fontFamily: 'SF Pro Display',
     fontSize: 22,
     lineHeight: 28,
   },
   Heading3: {
-    fontFamily: 'SF-Pro-Text-Semibold',
+    fontFamily: 'SF Pro Text',
     fontSize: 17,
     lineHeight: 22,
   },
   Heading4: {
-    fontFamily: 'SF-Pro-Text-Medium',
+    fontFamily: 'SF Pro Text',
     fontSize: 15,
     lineHeight: 20,
   },
   Button1: {
-    fontFamily: 'SF-Pro-Text-Semibold',
+    fontFamily: 'SF Pro Text',
     fontSize: 17,
     lineHeight: 22,
   },
   Button2: {
-    fontFamily: 'SF-Pro-Text-Medium',
+    fontFamily: 'SF Pro Text',
     fontSize: 12,
     lineHeight: 16,
   },
   Caption1: {
-    fontFamily: 'SF-Pro-Text-Medium',
+    fontFamily: 'SF Pro Text',
     fontSize: 12,
     lineHeight: 16,
   },
   Caption2: {
-    fontFamily: 'SF-Pro-Text-Medium',
+    fontFamily: 'SF Pro Text',
     fontSize: 11,
     lineHeight: 13,
   },
   Body1: {
-    fontFamily: 'SF-Pro-Text-Regular',
+    fontFamily: 'SF Pro Text',
     fontSize: 15,
     lineHeight: 20,
   },
   Body2: {
-    fontFamily: 'SF-Pro-Text-Regular',
+    fontFamily: 'SF Pro Text',
     fontSize: 13,
     lineHeight: 18,
   },
   SmallText: {
-    fontFamily: 'SF-Pro-Text-Regular',
+    fontFamily: 'SF Pro Text',
+    fontWeight: 'bold',
     fontSize: 11,
     lineHeight: 13,
   },
