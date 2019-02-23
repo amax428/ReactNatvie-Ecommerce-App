@@ -19,7 +19,7 @@ class Welcome extends Component {
         </Text>
         <View style={styles.space} />
         <Button onPress={() => navigation.navigate('Login')}>Log in</Button>
-        <Button type="white">Sign up</Button>
+        <Button type="white" onPress={() => navigation.navigate('Signup')}>Sign up</Button>
         <View style={styles.termsContainer}>
           <Text style={styles.terms}>By signup, I agree with</Text>
           <View style={styles.termLink}>
