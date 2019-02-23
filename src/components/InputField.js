@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Colors, BorderRadius, Spacing, Fonts } from '../styles/variables';
 
 class InputField extends Component {
@@ -8,14 +8,21 @@ class InputField extends Component {
 
     this.state = {
       text: '',
+      hidePassword: true,
     };
+
+    this.managePasswordVisibility = this.managePasswordVisibility.bind(this);
   }
 
   getInputValue = () => this.state.text;
 
+  managePasswordVisibility() {
+    this.setState({ hidePassword: !this.state.hidePassword });
+  }
+
   render() {
     const { error, placeholder, keyboardType, secureTextEntry } = this.props;
-    const { text } = this.state;
+    const { text, hidePassword  } = this.state;
     return (
       <View style={[styles.container, error ? styles.containerError : {}]}>
         <TextInput
@@ -26,11 +33,17 @@ class InputField extends Component {
           keyboardType={keyboardType}
           onChangeText={text => this.setState({ text })}
           underlineColorAndroid='transparent'
-          secureTextEntry={secureTextEntry}
+          secureTextEntry={secureTextEntry && hidePassword}
           ref={ref => this.input = ref}
           autoCapitalize = 'none'
-          clearButtonMode="while-editing"
         />
+        {secureTextEntry &&
+          <TouchableOpacity activeOpacity = { 0.8 } style = { styles.visibilityBtn }
+            onPress = { this.managePasswordVisibility }>
+            <Image source = { ( hidePassword ) ?require('../assets/image/eye_hide.png') :
+              require('../assets/image/eye.png') } style = { styles.btnImage } />
+          </TouchableOpacity>
+        }
       </View>
     );
   }
@@ -46,6 +59,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     paddingHorizontal: Spacing.Medium,
     marginVertical: Spacing.Smaller,
+    position: 'relative',
   },
   containerError: {
 
@@ -54,6 +68,19 @@ const styles = StyleSheet.create({
     ...Fonts.Body1,
     color: Colors.Dark,
   },
+  visibilityBtn: {
+    position: 'absolute',
+    right: 3,
+    height: 40,
+    width: 35,
+    padding: Spacing.Tiny,
+    top: Spacing.Tiny,
+  },
+  btnImage: {
+    resizeMode: 'contain',
+    height: '100%',
+    width: '100%'
+  }
 });
 
 export default InputField;
