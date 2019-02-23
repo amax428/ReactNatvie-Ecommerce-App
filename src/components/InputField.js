@@ -29,6 +29,7 @@ class InputField extends Component {
           secureTextEntry={secureTextEntry}
           ref={ref => this.input = ref}
           autoCapitalize = 'none'
+          clearButtonMode="while-editing"
         />
       </View>
     );

@@ -8,48 +8,48 @@ import InputField from '../../components/InputField';
 import { Spacing, Fonts, Colors } from '../../styles/variables';
 import Firebase from '../../services/api';
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      isNameCorrect: false,
       isEmailCorrect: false,
       isPasswordCorrect: false,
-      isLogin: false,
+      isRepeatCorrect: false,
+      isCreatingAccount: false,
     };
 
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignup = this.handleSignup.bind(this);
   }
 
-  handleLogin() {
+  handleSignup() {
+    const name = this.name.getInputValue();
     const email = this.email.getInputValue();
     const password = this.password.getInputValue();
+    const repeat = this.repeat.getInputValue();
 
     this.setState({
+      isNameCorrect: name === '',
       isEmailCorrect: email === '',
       isPasswordCorrect: password === '',
+      isRepeatCorrect: repeat === '' || repeat !== password,
     }, () => {
-      if(email !== '' && password !== ''){
-        this.loginToFireBase(email, password);
+      if(name !== '' && email !== '' && password !== '' && (repeat !== '' && repeat === password)){
+        this.createFireBaseAccount(name, email, password);
       } else {
-        console.warn('Fill up all fields')
+        console.warn('Fill up all fields correctly');
       }
     });
   }
 
-  loginToFireBase = (email, password) => {
-    this.setState({ isLogin: true });
-    Firebase.userLogin(email, password)
-      .then(user => {
-        if(user) //this.props.success(user); 
-        {
-          console.log(JSON.stringify(user));
-          this.props.navigation.navigate('HomeStack');
-        }
-        this.setState({ isLogin: false });
-        console.log('*****************************')
-      })
-      .catch(console.log("____________FAILED__________________"))
+  createFireBaseAccount = (name, email, password) => {
+    this.setState({ isCreatingAccount: true });
+    Firebase.createFirebaseAccount(name, email, password)
+      .then(result => {
+        if(result) this.props.navigation.navigate('HomeStack');
+        this.setState({ isCreatingAccount: false });
+      });
   };
 
   render() {
@@ -60,10 +60,14 @@ class Login extends Component {
           <BackHeader navigation={navigation} />
           <View style={styles.space} />
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Welcome back</Text>
-            <Text style={styles.description}>Please log in to your account</Text>
+            <Text style={styles.title}>Signup</Text>
           </View>
           <View style={styles.space} />
+          <InputField
+            placeholder="User name"
+            keyboardType="email-address"
+            ref={ref => this.name = ref}
+          />
           <InputField
             placeholder="Email or phone number"
             keyboardType="email-address"
@@ -75,13 +79,16 @@ class Login extends Component {
             secureTextEntry={true}
             ref={ref => this.password = ref}
           />
-          <View style={styles.paddingL}>
-            <TouchableText>Forgot password?</TouchableText>
-          </View>
-          <Button onPress={this.handleLogin}>Log in</Button>
+          <InputField
+            placeholder="Confirm password"
+            returnKeyType="done"
+            secureTextEntry={true}
+            ref={ref => this.repeat = ref}
+          />
+          <Button onPress={this.handleSignup}>Sign up</Button>
           <View style={[styles.paddingL, styles.signup]}>
-            <Text style={styles.question}>I don't have account?</Text>
-            <TouchableText onPress={() => navigation.navigate('Signup')}>Sign up now</TouchableText>
+            <Text style={styles.question}>I already have account?</Text>
+            <TouchableText onPress={() => navigation.navigate('Login')}>Log in</TouchableText>
           </View>
           <View style={styles.space} />
           <SocialButtonContainer />
@@ -125,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default Signup;
