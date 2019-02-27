@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import BackHeader from '../../components/BackHeader';
 import Button from '../../components/Button';
 import SocialButtonContainer from '../../components/SocialButtonContainer';

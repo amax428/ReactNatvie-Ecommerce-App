@@ -5,5 +5,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 target 'productApp' do
 
+  pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
+
 end
 
