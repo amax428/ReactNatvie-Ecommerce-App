@@ -11,7 +11,7 @@ const LoginStack = createStackNavigator({
   Login: Login,
   Signup: Signup,
 }, {
-  initialRouteName: 'Welcome',
+  initialRouteName: 'Login',
   headerMode: 'none',
 });
 
@@ -28,7 +28,7 @@ const LaunchStack = createSwitchNavigator({
   LoginStack: LoginStack,
   HomeStack: HomeStack,
 }, {
-  initialRouteName: 'Launch',
+  initialRouteName: 'LoginStack',
 });
 
 export default LaunchStack;

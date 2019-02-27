@@ -124,7 +124,7 @@ class Signup extends Component {
             <TouchableText onPress={() => navigation.navigate('Login')}>Log in</TouchableText>
           </View>
           <View style={styles.space} />
-          <SocialButtonContainer />
+          <SocialButtonContainer navigation={navigation}/>
         </View>
       </ScrollView>
     );

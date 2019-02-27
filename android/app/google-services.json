@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:653955739655:android:b477e06d2ff0181f",
+        "mobilesdk_app_id": "1:653955739655:android:a406f830281954ee",
         "android_client_info": {
-          "package_name": "com.example.productapp"
+          "package_name": "com.productapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "653955739655-869k1fn734n5etkrdho6kuocommgjhm4.apps.googleusercontent.com",
+          "client_id": "653955739655-a3bi8st9324tmpnoh7pqppi0a1pq1as0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.productapp",
+            "package_name": "com.productapp",
             "certificate_hash": "48913d621b1cbc541e3d38c447f84106963bef1a"
           }
         },
@@ -42,39 +42,15 @@
             {
               "client_id": "653955739655-bbnlng03o2ffdr3sg83rm12qlcl5r5u8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "653955739655-g07j44b9jm85cag2f5ovntatdm3e7ltg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.productApp"
+              }
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:653955739655:android:a406f830281954ee",
-        "android_client_info": {
-          "package_name": "com.productapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "653955739655-bbnlng03o2ffdr3sg83rm12qlcl5r5u8.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDLMjmGDlzwMlEXTvDSOBdcyZ34kWon8cY"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

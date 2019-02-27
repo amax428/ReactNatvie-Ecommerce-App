@@ -26,7 +26,7 @@ class Welcome extends Component {
             <TouchableText>Terms of services</TouchableText>
           </View>
         </View>
-        <SocialButtonContainer />
+        <SocialButtonContainer navigation={navigation}/>
       </View>
     );
   }

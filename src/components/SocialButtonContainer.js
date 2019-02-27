@@ -5,12 +5,13 @@ import { Colors } from '../styles/variables';
 
 class SocialButtonContainer extends Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <Text style={styles.socialLogin}>OR LOG IN WITH</Text>
         <View style={styles.socialButtonContainer}>
-          <SocialButton type="Facebook" />
-          <SocialButton type="Google" />
+          <SocialButton type="Facebook" navigation={navigation}/>
+          <SocialButton type="Google" navigation={navigation}/>
         </View>
       </View>
     );

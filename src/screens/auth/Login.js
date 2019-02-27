@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import BackHeader from '../../components/BackHeader';
 import Button from '../../components/Button';
 import SocialButtonContainer from '../../components/SocialButtonContainer';
@@ -52,7 +51,6 @@ class Login extends Component {
           this.props.navigation.navigate('HomeStack');
         }
         this.setState({ isLogin: false });
-        console.log('*****************************')
       }).catch(error => {
         switch (error.code) {
           case 'auth/invalid-email':
@@ -102,7 +100,7 @@ class Login extends Component {
             <TouchableText onPress={() => navigation.navigate('Signup')}>Sign up now</TouchableText>
           </View>
           <View style={styles.space} />
-          <SocialButtonContainer />
+          <SocialButtonContainer navigation={navigation}/>
         </View>
       </ScrollView>
     );
