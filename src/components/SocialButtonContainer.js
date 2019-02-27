@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   socialLogin: {
     textAlign: 'center',
-    fontFamily: 'SF-Pro-Text-Semibold',
+    fontFamily: 'SF Pro Text',
     fontSize: 12,
     color: Colors.Grey.light,
   },

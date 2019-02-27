@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     marginVertical: Spacing.Big,
   },
   question: {
-    fontFamily: 'SF-Pro-Text-Regular',
+    fontFamily: 'SF Pro Text',
     fontSize: 14,
     color: Colors.Grey.light,
   },

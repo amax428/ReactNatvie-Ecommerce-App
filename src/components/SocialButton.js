@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     marginVertical: Spacing.Normal,
   },
   textContatiner: {
-    fontFamily: 'SF-Pro-Text-Medium',
+    fontFamily: 'SF Pro Text',
     fontSize: 14,
     paddingVertical: Spacing.Small,
     marginLeft: Spacing.Small,
